@@ -5,39 +5,74 @@ const { BinarySearchTree, TreeNode } = require('./binary-search-tree.js');
 // Practice problems on binary trees
 
 function findMinBST (rootNode) {
-  // Your code here 
+  if (!rootNode) return null;
+
+  let current = rootNode;
+
+  while(current.left) {
+    current = current.left
+  }
+  return current.val
 }
 
 function findMaxBST (rootNode) {
-  // Your code here 
+  if (!rootNode) return null;
+  if (!rootNode.right) return rootNode.val;
+  return findMaxBST(rootNode.right)
 }
 
 function findMinBT (rootNode) {
-  // Your code here 
+  let queue = [rootNode];
+
+  let minVal = rootNode.val;
+
+  while(queue.length){
+    let node = queue.shift();
+    if (node.val < minVal){
+      minVal = node.val;
+    }
+    if (node.left) queue.push(node.left)
+    if (node.right) queue.push(node.right)
+  }
+
+  return minVal;
 }
 
 function findMaxBT (rootNode) {
-  // Your code here 
+  let queue = [rootNode];
+
+  let maxVal = rootNode.val;
+
+  while(queue.length){
+    let node = queue.shift();
+    if (node.val > maxVal){
+      maxVal = node.val;
+    }
+    if (node.left) queue.push(node.left)
+    if (node.right) queue.push(node.right)
+  }
+
+  return maxVal;
 }
 
 function getHeight (rootNode) {
-  // Your code here 
+  // Your code here
 }
 
 function balancedTree (rootNode) {
-  // Your code here 
+  // Your code here
 }
 
 function countNodes (rootNode) {
-  // Your code here 
+  // Your code here
 }
 
 function getParentNode (rootNode, target) {
-  // Your code here 
+  // Your code here
 }
 
 function inOrderPredecessor (rootNode, target) {
-  // Your code here 
+  // Your code here
 }
 
 function deleteNodeBST(rootNode, target) {
@@ -55,7 +90,7 @@ function deleteNodeBST(rootNode, target) {
 
   // Case 2: Two children:
   //  Set the value to its in-order predecessor, then delete the predecessor
-  //  Replace target node with the left most child on its right side, 
+  //  Replace target node with the left most child on its right side,
   //  or the right most child on its left side.
   //  Then delete the child that it was replaced with.
 
