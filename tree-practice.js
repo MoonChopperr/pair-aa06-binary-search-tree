@@ -94,22 +94,49 @@ function countNodes(rootNode) {
 }
 
 function getParentNode(rootNode, target) {
+  //Iterative solution
   if (rootNode.val === target) return null
+  const queue = [rootNode]
 
-  let answer;
+  //Important; will be doing in future mods
+  // if(currNode.left && currNode.left.val === target)
 
-  if (rootNode.left === target || rootNode.right === target) {
-    answer = rootNode.val
-  }
-  if (rootNode.left !== null) {
-    getParentNode(rootNode.left, target)
-  }
-  if (rootNode.right !== null) {
-    getParentNode(rootNode.right, target)
-  }
+  while (queue.length) {
+    const currNode = queue.shift()
 
-return answer
+    if (currNode.left) {
+
+    if (currNode.left.val === target) return currNode
+      queue.push(currNode.left)
+    }
+
+    if (currNode.right) {
+
+      if (currNode.right.val === target) return currNode
+      queue.push(currNode.right)
+    }
+  }
 }
+//   if (rootNode.val === target) return null
+
+//   let answer;
+
+//   if (rootNode.left === target || rootNode.right === target) {
+//     answer = rootNode.val
+//   }
+//   if (rootNode.left !== null) {
+//     getParentNode(rootNode.left, target)
+//   }
+//   if (rootNode.right !== null) {
+//     getParentNode(rootNode.right, target)
+//   }
+
+// return answer
+
+
+
+
+
 
 function inOrderPredecessor(rootNode, target) {
   // Your code here
